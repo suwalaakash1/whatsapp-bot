@@ -30,7 +30,7 @@ export const config: Config = {
   businessWebsite: process.env.BUSINESS_WEBSITE || "",
   businessPhone: process.env.BUSINESS_PHONE || "",
   ignoreGroups: readBool(process.env.IGNORE_GROUPS, true),
-  botEnabled: readBool(process.env.BOT_ENABLED, true),
+  botEnabled: true,
   aiEnabled: readBool(process.env.AI_ENABLED, false),
   aiProvider: process.env.AI_PROVIDER || "",
   aiApiKey: process.env.AI_API_KEY || "",

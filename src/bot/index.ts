@@ -17,19 +17,22 @@ export function createClient(): Client {
     qrcode.generate(qr, { small: true });
   });
 
-  client.on("message", async (message: Message) => {
-    console.log(message.body);
+  client.on("message_create", async (message: Message) => {
+    console.log(message.fromMe, message.body, "dgfdgfdg");
 
+    // handle self messages
     if (message.fromMe) {
       await handleOwnerCommand(message);
-      return;
     }
 
+    // pass, if bot is not enabled
+    if (!isBotEnabled()) return;
+    // pass, if group message
     if (message.from === "status@broadcast") return;
     if (config.ignoreGroups && message.from.endsWith("@g.us")) return;
-    if (!isBotEnabled()) return;
 
-    await handleIncomingMessage(message);
+    // handle incoming message
+    // await handleIncomingMessage(message);
   });
 
   return client;
