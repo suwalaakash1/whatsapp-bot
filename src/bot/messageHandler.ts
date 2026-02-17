@@ -63,6 +63,7 @@ export async function handleIncomingMessage(message: Message): Promise<void> {
   }
 
   const intent = findIntent(normalized);
+  
   if (intent) {
     session.lastIntent = intent.name;
     if (intent.setAwaiting) session.awaiting = intent.setAwaiting;
